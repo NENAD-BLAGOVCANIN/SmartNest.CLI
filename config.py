@@ -1,0 +1,11 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+GOOGLE_OAUTH_CLIENT_ID = os.getenv('GOOGLE_OAUTH_CLIENT_ID')
+GOOGLE_OAUTH_CLINT_SECRET = os.getenv('GOOGLE_OAUTH_CLINT_SECRET')
+GOOGLE_ACCESS_TOKEN = os.getenv('GOOGLE_ACCESS_TOKEN')
+OPENWEATHERMAP_API_KEY = os.getenv('OPENWEATHERMAP_API_KEY')
+CITY = os.getenv('CITY')
