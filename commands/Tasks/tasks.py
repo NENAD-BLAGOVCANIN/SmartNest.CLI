@@ -1,5 +1,4 @@
 from utils.http import send
-from datetime import datetime, timedelta
 import click
 from utils.auth import get_google_credentials
 
@@ -12,8 +11,27 @@ def get_tasks():
 
     access_token = get_google_credentials()
 
-    tasks = send('GET', f'{google_tasks_url}', 
+    tasks = send('GET', google_tasks_url, 
         headers={"Authorization": "Bearer " + access_token},
     )
 
     click.echo(tasks)
+
+
+@click.command()
+@click.argument('title')
+def create_task(title):
+    """Create a new task in Google Tasks with the given title."""
+
+    access_token = get_google_credentials()
+
+    task_data = {
+        'title': title
+    }
+
+    response = send('POST', google_tasks_url, 
+        headers={"Authorization": "Bearer " + access_token},
+        body=task_data
+    )
+
+    click.echo(response)

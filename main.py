@@ -5,7 +5,7 @@ import commands
 from commands.play_song import play_song
 from commands.weather import get_local_weather
 from commands.Calendar.calendar import get_calendar_events, create_calendar_event
-from commands.Tasks.tasks import get_tasks
+from commands.Tasks.tasks import get_tasks, create_task
 
 @click.group()
 def cli():
@@ -18,6 +18,7 @@ def load_commands():
     cli.add_command(get_calendar_events)
     cli.add_command(create_calendar_event)
     cli.add_command(get_tasks)
+    cli.add_command(create_task)
 
 load_commands()
 
