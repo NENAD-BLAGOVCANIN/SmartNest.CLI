@@ -28,3 +28,33 @@ def get_calendar_events():
     )
 
     click.echo(events)
+
+
+
+@click.command()
+@click.argument('title')
+@click.argument('start_datetime')
+@click.argument('end_datetime')
+def create_calendar_event(title, start_datetime, end_datetime):
+    """Create a new calendar event with the given title and datetime parameters."""
+
+    access_token = get_google_credentials()
+
+    event_data = {
+        'summary': title,
+        'start': {
+            'dateTime': datetime.strptime(start_datetime, '%Y-%m-%dT%H:%M:%S').isoformat() + 'Z',
+            'timeZone': 'UTC'
+        },
+        'end': {
+            'dateTime': datetime.strptime(end_datetime, '%Y-%m-%dT%H:%M:%S').isoformat() + 'Z',
+            'timeZone': 'UTC'
+        }
+    }
+
+    response = send('POST', f'{google_calendar_url}/primary/events', 
+        headers={"Authorization": f"Bearer {access_token}"},
+        body=event_data
+    )
+
+    click.echo(response)
