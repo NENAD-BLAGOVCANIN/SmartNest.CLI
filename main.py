@@ -4,6 +4,7 @@ from commands.weather import get_local_weather
 from commands.Calendar.calendar import get_calendar_events, create_calendar_event
 from commands.Tasks.tasks import get_tasks, create_task
 from commands.Messaging.whatsapp import send_message_on_whatsapp
+from commands.ProjectManagement.github import create_new_github_project
 
 @click.group()
 def cli():
@@ -18,6 +19,7 @@ def load_commands():
     cli.add_command(get_tasks)
     cli.add_command(create_task)
     cli.add_command(send_message_on_whatsapp)
+    cli.add_command(create_new_github_project)
 
 load_commands()
 
